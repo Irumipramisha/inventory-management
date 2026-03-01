@@ -1,13 +1,13 @@
 let inventory = [];
 
-// 1. මේක තමයි බඩු ඇතුළත් කරන ප්‍රධාන Function එක
+// 1. This is the main function that loads goods.
 function addItem() {
     const nameInput = document.getElementById('itemName');
     const priceInput = document.getElementById('itemPrice');
     const qtyInput = document.getElementById('itemQty');
 
     if (nameInput.value === '' || priceInput.value === '' || qtyInput.value === '') {
-        alert("කරුණාකර සියලුම විස්තර ඇතුළත් කරන්න!");
+        alert("Please enter all details!");
         return;
     }
 
@@ -17,7 +17,7 @@ function addItem() {
         qty: qtyInput.value
     };
 
-    // Java Server එකට දත්ත යැවීම
+    // Send data to java server
     fetch('http://localhost:8080/add-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,18 +29,18 @@ function addItem() {
         inventory.push(newItem);
         updateTable();
         
-        // Input fields හිස් කිරීම
+        // Clearing input fields
         nameInput.value = '';
         priceInput.value = '';
         qtyInput.value = '';
     })
     .catch(error => {
         console.error('Error:', error);
-        alert("Java Server එකට දත්ත යවන්න බැහැ!");
+        alert("Unable to send data to Java Server");
     });
 }
 
-// 2. Table එක Update කරන කොටස
+// 2. Update table
 function updateTable() {
     const tableBody = document.getElementById('itemBody');
     tableBody.innerHTML = ''; 
@@ -55,7 +55,7 @@ function updateTable() {
     });
 }
 
-// 3. Delete කරන කොටස
+// 3. Delete 
 function deleteItem(index) {
     const itemToDelete = inventory[index];
     fetch('http://localhost:8080/delete-item', {
@@ -69,4 +69,5 @@ function deleteItem(index) {
         updateTable();
     })
     .catch(error => console.error('Error:', error));
+
 }
