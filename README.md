@@ -10,11 +10,6 @@ A professional Full-stack Inventory Management application built with a **Java B
 
 ---
 
-## Project Walkthrough
-> **[Insert your demo video or GIF here to show the Java Terminal and Web App working together]**
-
----
-
 ## Tech Stack
 
 This project demonstrates my ability to connect different layers of an application:
